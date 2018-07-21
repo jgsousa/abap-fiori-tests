@@ -1,0 +1,196 @@
+{
+	"_version": "1.9.0",
+	"sap.app": {
+		"id": "CTT.Reabastecimento",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata/sap/ZEWM_REPLENISHMENT_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "sap.ui.ui5-template-plugin.2masterdetail",
+			"version": "1.52.7"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://detail-view",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "CTT.Reabastecimento.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.42.0",
+			"libs": {
+				"sap.collaboration": {
+					"lazy": true
+				},
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {
+					"minVersion": ""
+				},
+				"sap.ushell": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "CTT.Reabastecimento.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true
+			},
+			"ActiveOrder": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "CTT.Reabastecimento.view",
+				"controlId": "idAppControl",
+				"controlAggregation": "detailPages",
+				"bypassed": {
+					"target": ["master", "notFound"]
+				},
+				"async": true
+			},
+			"routes": [{
+				"pattern": "",
+				"name": "master",
+				"target": ["object", "master"]
+			}, {
+				"pattern": "TransferOrders/{objectId}",
+				"name": "object",
+				"target": ["master", "object"]
+			}, {
+				"name": "Confirm_binded",
+				"pattern": "TransferOrders/{Id}/Confirm",
+				"target": ["master", "Confirm"]
+			}],
+			"targets": {
+				"master": {
+					"viewName": "Master",
+					"viewLevel": 1,
+					"viewId": "master",
+					"controlAggregation": "masterPages",
+					"routerClass": "sap.m.routing.Router",
+					"viewType": "XML",
+					"viewPath": "CTT.Reabastecimento.view",
+					"controlId": "idAppControl",
+					"bypassed": {
+						"target": ["master", "notFound"]
+					},
+					"async": true
+				},
+				"object": {
+					"viewName": "Detail",
+					"viewId": "detail",
+					"viewLevel": 2,
+					"routerClass": "sap.m.routing.Router",
+					"viewType": "XML",
+					"viewPath": "CTT.Reabastecimento.view",
+					"controlId": "idAppControl",
+					"controlAggregation": "detailPages",
+					"bypassed": {
+						"target": ["master", "notFound"]
+					},
+					"async": true
+				},
+				"detailObjectNotFound": {
+					"viewName": "DetailObjectNotFound",
+					"viewId": "detailObjectNotFound",
+					"routerClass": "sap.m.routing.Router",
+					"viewType": "XML",
+					"viewPath": "CTT.Reabastecimento.view",
+					"controlId": "idAppControl",
+					"controlAggregation": "detailPages",
+					"bypassed": {
+						"target": ["master", "notFound"]
+					},
+					"async": true
+				},
+				"detailNoObjectsAvailable": {
+					"viewName": "DetailNoObjectsAvailable",
+					"viewId": "detailNoObjectsAvailable",
+					"routerClass": "sap.m.routing.Router",
+					"viewType": "XML",
+					"viewPath": "CTT.Reabastecimento.view",
+					"controlId": "idAppControl",
+					"controlAggregation": "detailPages",
+					"bypassed": {
+						"target": ["master", "notFound"]
+					},
+					"async": true
+				},
+				"notFound": {
+					"viewName": "NotFound",
+					"viewId": "notFound",
+					"routerClass": "sap.m.routing.Router",
+					"viewType": "XML",
+					"viewPath": "CTT.Reabastecimento.view",
+					"controlId": "idAppControl",
+					"controlAggregation": "detailPages",
+					"bypassed": {
+						"target": ["master", "notFound"]
+					},
+					"async": true
+				},
+				"Confirm": {
+					"viewId": "confirm",
+					"viewType": "XML",
+					"routerClass": "sap.m.routing.Router",
+					"viewPath": "CTT.Reabastecimento.view",
+					"controlId": "idAppControl",
+					"controlAggregation": "detailPages",
+					"viewName": "Confirm"
+				}
+			},
+			"additionalData": {
+				"CTT.Reabastecimento.view.Confirm": {
+					"routeName": "Confirm_binded",
+					"entitySet": "/TransferOrders"
+				}
+			}
+		}
+	}
+}

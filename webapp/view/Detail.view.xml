@@ -1,0 +1,84 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="CTT.Reabastecimento.controller.Detail">
+
+	<semantic:DetailPage id="page" showNavButton="{device>/system/phone}" title="{i18n>detailTitle}" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}" navButtonPress="onNavBack">
+
+		<semantic:content>
+
+		<VBox width="100%" direction="Column" id="vbox0">
+		    <items>
+		        <f:Form editable="true" id="form0">
+		        	<f:title>
+		        		<core:Title text="Recolher palete" id="title1"/>	
+		        	</f:title>
+		            <f:layout>
+		                <f:ResponsiveGridLayout id="layout0" columnsXL="3" labelSpanXL="4" emptySpanXL="0" columnsL="1" labelSpanL="3" emptySpanL="4" columnsM="1" labelSpanM="2" emptySpanM="4" labelSpanS="12" emptySpanS="0" adjustLabelSpan="false" singleContainerFullSize="false"/>
+		            </f:layout>
+		            <f:formContainers>
+		                <f:FormContainer id="container0">
+		                    <f:formElements>
+		                        <f:FormElement label="UC" id="element0">
+		                            <f:fields>
+		                                <Input id="input0" value="{path: 'ActiveOrder>/Order/UC', formatter: '.formatter.removeLeadingZeros'}" editable="false" enabled="false">
+		                           			<layoutData>
+												<l:GridData span="L6 M3"/>
+											</layoutData>
+		                                </Input>	
+		                                <Input id="input2" value="{ActiveOrder>/Order/SelectedUC}">
+		                                	<layoutData>
+												<l:GridData span="L6 M3"/>
+											</layoutData>
+		                                </Input>
+		                            </f:fields>
+		                        </f:FormElement>
+		                        <f:FormElement label="Posição" id="element1">
+		                            <f:fields>
+		                                <Input width="100%" id="input1" editable="false" enabled="false" value="{ActiveOrder>/Order/OriginType}">
+											<layoutData>
+												<l:GridData span="L1 M1"/>
+											</layoutData>
+		                                </Input>
+		                                <Input width="100%" id="input3" editable="false" enabled="false" value="{ActiveOrder>/Order/OriginArea}">
+		                                	<layoutData>
+												<l:GridData span="L1 M1"/>
+											</layoutData>
+		                                </Input>
+		                                <Input width="100%" id="input4" value="{ActiveOrder>/Order/OriginPosition}" editable="false" enabled="false">
+		                                	<layoutData>
+												<l:GridData span="L3 M2"/>
+											</layoutData>
+		                                </Input>
+		                                <Input width="100%" id="input6" submit="onSubmit" value="{ActiveOrder>/Order/SelectedOriginPosition}">
+		                                	<layoutData>
+												<l:GridData span="L3 M2"/>
+											</layoutData>
+		                                </Input>
+		                            </f:fields>
+		                        </f:FormElement>
+		                        <f:FormElement label="Material" id="element2">
+		                            <f:fields>
+		                                <Input width="100%" id="input7" editable="false" enabled="false" value="{ActiveOrder>/Order/Material}"/>
+		                            </f:fields>
+		                        </f:FormElement>
+		                        <f:FormElement label="Descrição" id="element3">
+		                            <f:fields>
+		                                <Input width="100%" id="input8" value="{ActiveOrder>/Order/MaterialDescription}" editable="false" enabled="false"/>
+		                            </f:fields>
+		                        </f:FormElement>
+		                    </f:formElements>
+		                </f:FormContainer>
+		            </f:formContainers>
+				</f:Form>
+		    </items>
+		</VBox>
+		</semantic:content>
+
+
+	<semantic:customFooterContent>
+
+	    <Button text="Confirmar" width="100px" id="BtnConfirm" activeIcon="sap-icon://accept" type="Accept" press="onConfirm"/>
+
+	</semantic:customFooterContent>
+
+	</semantic:DetailPage>
+
+</mvc:View>

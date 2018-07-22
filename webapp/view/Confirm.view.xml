@@ -19,22 +19,22 @@
 		                            <f:fields>
 		                                <Input width="100%" id="input1" editable="false" enabled="false" value="{ActiveOrder>/Order/DestinationType}">
 											<layoutData>
-												<l:GridData span="L1 M1"/>
+												<l:GridData span="L1 M1 S2"/>
 											</layoutData>
 		                                </Input>
 		                                <Input width="100%" id="input3" editable="false" enabled="false" value="{ActiveOrder>/Order/DestinationArea}">
 		                                	<layoutData>
-												<l:GridData span="L1 M1"/>
+												<l:GridData span="L1 M1 S2"/>
 											</layoutData>
 		                                </Input>
 		                                <Input width="100%" id="input4" value="{ActiveOrder>/Order/DestinationPosition}" editable="false" enabled="false">
 		                                	<layoutData>
-												<l:GridData span="L3 M2"/>
+												<l:GridData span="L3 M2 S4"/>
 											</layoutData>
 		                                </Input>
 		                                <Input width="100%" id="input6" submit="onSubmit" value="{ActiveOrder>/Order/SelectedDestinationPosition}">
 		                                	<layoutData>
-												<l:GridData span="L3 M2"/>
+												<l:GridData span="L3 M2 S4"/>
 											</layoutData>
 		                                </Input>
 		                            </f:fields>

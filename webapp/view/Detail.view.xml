@@ -20,12 +20,12 @@
 		                            <f:fields>
 		                                <Input id="input0" value="{path: 'ActiveOrder>/Order/UC', formatter: '.formatter.removeLeadingZeros'}" editable="false" enabled="false">
 		                           			<layoutData>
-												<l:GridData span="L6 M3"/>
+												<l:GridData span="L6 M3 S6"/>
 											</layoutData>
 		                                </Input>	
 		                                <Input id="input2" value="{ActiveOrder>/Order/SelectedUC}" submit="onUCConfirmed">
 		                                	<layoutData>
-												<l:GridData span="L6 M3"/>
+												<l:GridData span="L6 M3 S6"/>
 											</layoutData>
 		                                </Input>
 		                            </f:fields>
@@ -34,22 +34,22 @@
 		                            <f:fields>
 		                                <Input width="100%" id="input1" editable="false" enabled="false" value="{ActiveOrder>/Order/OriginType}">
 											<layoutData>
-												<l:GridData span="L1 M1"/>
+												<l:GridData span="L1 M1 S2"/>
 											</layoutData>
 		                                </Input>
 		                                <Input width="100%" id="input3" editable="false" enabled="false" value="{ActiveOrder>/Order/OriginArea}">
 		                                	<layoutData>
-												<l:GridData span="L1 M1"/>
+												<l:GridData span="L1 M1 S2"/>
 											</layoutData>
 		                                </Input>
 		                                <Input width="100%" id="input4" value="{ActiveOrder>/Order/OriginPosition}" editable="false" enabled="false">
 		                                	<layoutData>
-												<l:GridData span="L3 M2"/>
+												<l:GridData span="L3 M2 S4"/>
 											</layoutData>
 		                                </Input>
 		                                <Input width="100%" id="input6" submit="onSubmit" value="{ActiveOrder>/Order/SelectedOriginPosition}">
 		                                	<layoutData>
-												<l:GridData span="L3 M2"/>
+												<l:GridData span="L3 M2 S4"/>
 											</layoutData>
 		                                </Input>
 		                            </f:fields>

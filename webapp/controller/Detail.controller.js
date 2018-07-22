@@ -7,6 +7,7 @@ sap.ui.define([
 	"use strict";
 	return BaseController.extend("CTT.Reabastecimento.controller.Detail", {
 		formatter: formatter,
+		resources: null,
 		/* =========================================================== */
 		/* lifecycle methods                                           */
 		/* =========================================================== */
@@ -26,9 +27,20 @@ sap.ui.define([
 			this.setModel(oViewModel, "detailView");
 			this.getOwnerComponent().getModel().metadataLoaded().then(this._onMetadataLoaded.bind(this));
 			this.getOwnerComponent().setModel(oActiveModel, "ActiveOrder");
+			this.resources = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		},
-		onAfterShow : function() {
-			alert('apanoou'); 
+		onAfterRendering: function(){
+			var getInputId = this.getView().byId("input2");
+			this._setInitialFocus(getInputId);
+		},
+		 _setInitialFocus: function(inputControl) {
+			this.getView().addEventDelegate({
+			    onAfterShow: function() {
+			      setTimeout(function() {
+			        inputControl.focus();
+			      }.bind(this), 0);
+			    }
+			  }, this);
 		},
 		/* =========================================================== */
 		/* begin: internal methods                                     */
@@ -100,8 +112,6 @@ sap.ui.define([
 				sObjectId,
 				location.href
 			]));
-			var getInputId = oView.byId("input2");
-			getInputId.focus();
 		},
 		_onMetadataLoaded: function () {
 			// Store original busy indicator delay for the detail view
@@ -155,9 +165,6 @@ sap.ui.define([
 			var obj = this.getView().getController().getOwnerComponent().getModel("ActiveOrder").getProperty("/Order");
 			if( obj.OriginPosition === obj.SelectedOriginPosition && 
 				obj.UC === obj.SelectedUC ){
-				sap.m.MessageToast.show("Good!!", {
-				    duration: 3000
-				});
 				parameters["Id"] = encodeURIComponent(JSON.stringify({
 						value: obj.Id,
 						type: "Edm.String"
@@ -165,7 +172,7 @@ sap.ui.define([
 				router.navTo("Confirm_binded", parameters);
 			}
 			else {
-				sap.m.MessageToast.show("Selecionar a posição correta.", {
+				sap.m.MessageToast.show(this.getView().getController().resources.getText("posicaoErrada"), {
 				    duration: 3000
 				});
 			}				
@@ -175,6 +182,18 @@ sap.ui.define([
 		},
 		onSubmit: function(){
 			this.getView().getController()._handleSubmit();	
+		},
+		onUCConfirmed : function(){
+			var obj = this.getView().getController().getOwnerComponent().getModel("ActiveOrder").getProperty("/Order");
+			if(obj && obj.UC === obj.SelectedUC){
+				var getInputId = this.getView().byId("input6");
+				getInputId.focus();
+			}
+			else{
+				sap.m.MessageToast.show(this.getView().getController().resources.getText("ucErrada"), {
+				    duration: 3000
+				});				
+			}
 		}
 	});
 });

@@ -23,7 +23,7 @@
 												<l:GridData span="L6 M3"/>
 											</layoutData>
 		                                </Input>	
-		                                <Input id="input2" value="{ActiveOrder>/Order/SelectedUC}">
+		                                <Input id="input2" value="{ActiveOrder>/Order/SelectedUC}" submit="onUCConfirmed">
 		                                	<layoutData>
 												<l:GridData span="L6 M3"/>
 											</layoutData>

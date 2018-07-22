@@ -22,9 +22,10 @@ sap.ui.define(["CTT/Reabastecimento/controller/BaseController", "sap/ui/model/js
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf CTT.Reabastecimento.view.Confirm
 		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
+		onAfterRendering: function() {
+			var getInputId = this.getView().byId("input6");
+			this._setInitialFocus(getInputId);		
+		},
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 		 * @memberOf CTT.Reabastecimento.view.Confirm
@@ -36,6 +37,16 @@ sap.ui.define(["CTT/Reabastecimento/controller/BaseController", "sap/ui/model/js
 		 *@memberOf 
 		 */
 		reference: this,
+		resources: null,
+		 _setInitialFocus: function(inputControl) {
+			this.getView().addEventDelegate({
+			    onAfterShow: function() {
+			      setTimeout(function() {
+			        inputControl.focus();
+			      }.bind(this), 0);
+			    }
+			  }, this);
+		},
 		handleNavigationWithContext: function () {
 			var that = this;
 			var entitySet;
@@ -78,6 +89,7 @@ sap.ui.define(["CTT/Reabastecimento/controller/BaseController", "sap/ui/model/js
 			});
 			this.setModel(oViewModel, "detailView");
 			this.handleNavigationWithContext();
+			this.resources = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		},
 		_handleSubmit: function(){
 			var view = this.getView();
@@ -100,14 +112,14 @@ sap.ui.define(["CTT/Reabastecimento/controller/BaseController", "sap/ui/model/js
 				     },
 				     error: function(oError){
 				     	oViewModel.setProperty("/busy", false);
-						sap.m.MessageToast.show("Selecionar a posição correta.", {
+						sap.m.MessageToast.show(this.getView().getController().resources.getText("posicaoErrada"), {
 						    duration: 3000
 						});	
 				     }
 				});
 			}
 			else {
-				sap.m.MessageToast.show("Selecionar a posição correta.", {
+				sap.m.MessageToast.show(this.getView().getController().resources.getText("posicaoErrada"), {
 				    duration: 3000
 				});
 			}				

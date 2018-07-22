@@ -16,6 +16,14 @@ sap.ui.define([
 				}
 
 				return parseFloat(sValue).toFixed(2);
+			},
+			removeLeadingZeros: function(str) {
+				var num = parseInt(str, 10);
+				if (num === 0 || isNaN(num)) {
+					return str;
+				} else {
+					return num.toString();
+				}
 			}
 		};
 

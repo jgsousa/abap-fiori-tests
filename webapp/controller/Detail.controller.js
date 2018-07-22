@@ -80,7 +80,7 @@ sap.ui.define([
 						oViewModel.setProperty("/busy", true);
 					},
 					dataReceived: function () {
-						oViewModel.setProperty("/busy", false);
+						
 					}
 				}
 			});
@@ -103,6 +103,7 @@ sap.ui.define([
 				sObjectName = oObject.UC,
 				oViewModel = this.getModel("detailView");
 			this.getOwnerComponent().getModel("ActiveOrder").setProperty("/Order", oObject);
+			oViewModel.setProperty("/busy", false);
 			this.getOwnerComponent().oListSelector.selectAListItem(sPath);
 			oViewModel.setProperty("/saveAsTileTitle", oResourceBundle.getText("shareSaveTileAppTitle", [sObjectName]));
 			oViewModel.setProperty("/shareOnJamTitle", sObjectName);
